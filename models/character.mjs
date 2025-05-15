@@ -1,11 +1,12 @@
 import mongoose from 'mongoose';
 
 const characterSchema = new mongoose.Schema({
-  name: { type: String, required: true, trim: true },
-  role: { type: String, trim: true },
-  family: { type: String, trim: true }
+    // Remove whitespace before and after fields that should be strings
+    name: { type: String, required: true, trim: true },
+    role: { type: String, trim: true },
+    family: { type: String, trim: true }
 }, {
-  timestamps: true // Add createdAt and updatedAt fields
+    timestamps: true // Add createdAt and updatedAt fields
 });
 
 const Character = mongoose.model('Character', characterSchema);
