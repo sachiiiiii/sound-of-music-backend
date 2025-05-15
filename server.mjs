@@ -6,7 +6,7 @@ import cors from 'cors';
 import characterRoutes from './routes/characters.mjs';
 import songRoutes from './routes/songs.mjs';
 import locationRoutes from './routes/locations.mjs';
-
+import authRoutes from './routes/auth.mjs'; // Import authentication routes
 
 dotenv.config();
 
@@ -27,7 +27,7 @@ mongoose.connect(process.env.ATLAS_URI)
 app.use('/api/characters', characterRoutes);
 app.use('/api/songs', songRoutes);
 app.use('/api/locations', locationRoutes);
-// app.use('/api/auth', authRoutes); // Authentication routes
+app.use('/api/auth', authRoutes); // Use authentication routes
 
 // Base Route
 app.get('/', (req, res) => {
