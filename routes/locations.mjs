@@ -1,5 +1,5 @@
 import express from 'express';
-import Location from '../models/location.mjs';
+import Location from '../models/location.mjs'; // location schema
 // Controller functions
 import {
   getAllLocations,
@@ -11,6 +11,7 @@ import {
 
 const router = express.Router();
 
+// Seed Route
 router.get('/seed', async (req, res) => {
     try {
         await Location.create([
