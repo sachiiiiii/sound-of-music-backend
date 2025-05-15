@@ -8,6 +8,7 @@ import {
   updateLocation,
   deleteLocation
 } from '../controllers/locations.controller.mjs';
+import authenticateToken from '../middleware/auth.middleware.mjs'; // Import authentication middleware
 
 const router = express.Router();
 
@@ -29,8 +30,9 @@ router.get('/seed', async (req, res) => {
 // Define '/api/locations' endpoints and link them to controller functions
 router.get('/', getAllLocations);
 router.get('/:id', getLocationById);
-//router.post('/', createLocation);
-router.put('/:id', updateLocation); // PUT instead of PATCH for full updates
-//router.delete('/:id', deleteLocation);
+// Use auth middleware to protect routes that manipulate data
+//router.post('/', authenticateToken, createLocation);
+router.put('/:id', authenticateToken, updateLocation); // PUT instead of PATCH for full updates
+//router.delete('/:id', authenticateToken deleteLocation);
 
 export default router;

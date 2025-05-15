@@ -8,6 +8,7 @@ import {
     updateSong,
     deleteSong
 } from '../controllers/songs.controller.mjs';
+import authenticateToken from '../middleware/auth.middleware.mjs'; // Import authentication middleware
 
 const router = express.Router();
 
@@ -30,8 +31,9 @@ router.get('/seed', async (req, res) => {
 // Define '/api/songs' endpoints and link them to controller functions
 router.get('/', getAllSongs);
 router.get('/:id', getSongById);
-router.post('/', createSong);
-router.put('/:id', updateSong); // PUT instead PATCH for full updates
-router.delete('/:id', deleteSong);
+// Use auth middleware to protect routes that manipulate data
+router.post('/', authenticateToken, createSong);
+router.put('/:id', authenticateToken, updateSong); // PUT instead PATCH for full updates
+router.delete('/:id', authenticateToken, deleteSong);
 
 export default router;

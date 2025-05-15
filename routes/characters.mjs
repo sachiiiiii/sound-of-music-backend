@@ -8,6 +8,7 @@ import {
     updateCharacter,
     deleteCharacter
 } from '../controllers/characters.controller.mjs';
+import authenticateToken from '../middleware/auth.middleware.mjs'; // Import authentication middleware
 
 const router = express.Router();
 
@@ -38,8 +39,9 @@ router.get('/seed', async (req, res) => {
 // Define '/api/characters' endpoints and link them to controller functions
 router.get('/', getAllCharacters);
 router.get('/:id', getCharacterById);
-router.post('/', createCharacter);
-router.put('/:id', updateCharacter); // PUT instead PATCH for full updates
-router.delete('/:id', deleteCharacter);
+// Use auth middleware to protect routes that manipulate data
+router.post('/', authenticateToken, createCharacter);
+router.put('/:id', authenticateToken, updateCharacter); // PUT for full updates
+router.delete('/:id', authenticateToken, deleteCharacter);
 
 export default router;
