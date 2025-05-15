@@ -9,6 +9,10 @@ const characterSchema = new mongoose.Schema({
     timestamps: true // Add createdAt and updatedAt fields
 });
 
+// Indexes for characters databse collection
+characterSchema.index({ name: 1 }); // Index the 'name' field (ascending order)
+characterSchema.index({ family: 1 }); // Index the 'family' field
+
 const Character = mongoose.model('Character', characterSchema);
 
 export default Character;

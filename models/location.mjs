@@ -10,6 +10,12 @@ const locationSchema = new mongoose.Schema({
     timestamps: true // Add createdAt and updatedAt fields
 });
 
+// Indexes for locations database collection
+locationSchema.index({ name: 1 }); // Index the 'name' field
+locationSchema.index({ city: 1 }); // Index the 'city' field
+locationSchema.index({ country: 1 }); // Index the 'country' field
+locationSchema.index({ name: 'text', description: 'text' }); // Text Index for searching within string fields
+
 const Location = mongoose.model('Location', locationSchema);
 
 export default Location;

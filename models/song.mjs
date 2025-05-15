@@ -11,6 +11,12 @@ const songSchema = new mongoose.Schema({
     timestamps: true // Add createAt and updatedAt fields
 });
 
+// Indexes for songs database collection
+songSchema.index({ title: 1 }); // Index the 'title' field
+songSchema.index({ artist: 1 }); // Index the 'artist' field
+songSchema.index({ mood: 1 }); // Index the 'mood' field
+songSchema.index({ year: 1 }); // Index the 'year' field
+
 const Song = mongoose.model('Song', songSchema);
 
 export default Song;
