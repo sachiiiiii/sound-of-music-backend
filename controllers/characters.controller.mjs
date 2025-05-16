@@ -11,7 +11,7 @@ export const getAllCharacters = async (req, res) => {
     res.json(characters);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: 'Error retrieving characters - Server Error' });
   }
 };
 
@@ -25,7 +25,7 @@ export const getCharacterById = async (req, res) => {
     res.json(character);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: 'Error retrieving character - Server Error' });
   }
 };
 
@@ -35,10 +35,12 @@ export const createCharacter = async (req, res) => {
     const newCharacter = new Character(req.body);
     const savedCharacter = await newCharacter.save();
     res.status(201).json(savedCharacter);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server Error' });
-  }
+  } catch (err) { 
+    console.error(err); 
+    if (err.name === 'ValidationError') { 
+      return res.status(400).json({ message: 'Validation error', errors: err.errors }); 
+    } 
+    res.status(500).json({ message: 'Error creating character - Server Error' }); }
 };
 
 // _Update a character
@@ -51,7 +53,7 @@ export const updateCharacter = async (req, res) => {
     res.json(updatedCharacter);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: 'Error updating character - Server Error' });
   }
 };
 
@@ -65,6 +67,6 @@ export const deleteCharacter = async (req, res) => {
     res.status(204).send(); // 204 No Content for successful deletion
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: 'Error deleting character - Server Error' });
   }
 };

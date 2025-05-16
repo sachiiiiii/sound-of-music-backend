@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 // Global error handling
 app.use((err, _req, res, next) => {
   console.error(err.stack);
-  res.status(500).send("Seems like we messed up somewhere...");
+  res.status(500).send({ message: 'Something\'s wrong somewhere...', errors: err.errors });
 });
 
 // Start the server

@@ -8,10 +8,13 @@ import Location from '../models/location.mjs';
 export const getAllLocations = async (req, res) => {
     try {
         const locations = await Location.find();
+        // if (locations.length === 0) {
+        //     locations.push({message: "No data to display"})
+        // }
         res.json(locations);
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server Error' });
+        res.status(500).json({ message: 'Error retrieving locations; Server Error' });
     }
 };
 
@@ -25,7 +28,7 @@ export const getLocationById = async (req, res) => {
         res.json(location);
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server Error' });
+        res.status(500).json({ message: 'Error retrieving location; Server Error' });
     }
 };
 
@@ -37,7 +40,7 @@ export const createLocation = async (req, res) => {
         res.status(201).json(savedLocation);
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server Error' });
+        res.status(500).json({ message: 'Error creating new location - Server Error' });
     }
 };
 
@@ -51,7 +54,7 @@ export const updateLocation = async (req, res) => {
         res.json(updatedLocation);
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server Error' });
+        res.status(500).json({ message: 'Error updating location - Server Error' });
     }
 };
 
@@ -65,6 +68,6 @@ export const deleteLocation = async (req, res) => {
         res.status(204).send();
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server Error' });
+        res.status(500).json({ message: 'Error deleting location - Server Error' });
     }
 };

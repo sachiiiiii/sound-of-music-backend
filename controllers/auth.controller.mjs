@@ -12,7 +12,7 @@ export const registerUser = async (req, res) => {
     }
     const newUser = new User({ username, password });
     await newUser.save();
-    res.status(201).json({ message: 'User registered successfully' });
+    res.status(201).json({ message: 'You\'re registered!' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error registering user' });
@@ -35,7 +35,7 @@ export const loginUser = async (req, res) => {
     // Generate JWT
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    res.status(200).json({ message: 'Logged in successfully', userId: user._id, token: token });
+    res.status(200).json({ message: 'You\'re logged in!', userId: user._id, token: token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error logging in' });

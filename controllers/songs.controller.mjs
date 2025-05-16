@@ -11,7 +11,7 @@ export const getAllSongs = async (req, res) => {
     res.json(songs);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: 'Error retrieving songs - Server Error' });
   }
 };
 
@@ -25,7 +25,7 @@ export const getSongById = async (req, res) => {
     res.json(song);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: 'Error retrieving song - Server Error' });
   }
 };
 
@@ -37,7 +37,7 @@ export const createSong = async (req, res) => {
     res.status(201).json(savedSong);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: 'Error creating song - Server Error' });
   }
 };
 
@@ -51,7 +51,7 @@ export const updateSong = async (req, res) => {
     res.json(updatedSong);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: 'Error updating song - Server Error' });
   }
 };
 
@@ -65,6 +65,6 @@ export const deleteSong = async (req, res) => {
     res.status(204).send(); // 204 No Content for successful deletion
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: 'Error deleting song - Server Error' });
   }
 };
