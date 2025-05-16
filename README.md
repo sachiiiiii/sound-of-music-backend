@@ -30,9 +30,7 @@ Follow these steps to set up the backend application locally:
 2.  **Install dependencies:**
 
     ```bash
-    npm i express mongoose dotenv axios cors body-parser bcrypt jsonwebtoken
-    npm i --save-dev nodemon
-    npm i
+    npm install
     ```
 
 3.  **Configure environment variables:**
@@ -89,9 +87,12 @@ The development of this backend API was guided by many resources, including:
 * **Mongoose Documentation:** [https://mongoosejs.com/](https://mongoosejs.com/) - For learning how to interact with MongoDB using Mongoose, including schema definition, data modeling, and querying.
 * **jsonwebtoken (JWT) Documentation:** [https://jwt.io/](https://jwt.io/) and the [npm package documentation](https://www.npmjs.com/package/jsonwebtoken) - For understanding and implementing JSON Web Token based authentication.
 * **bcrypt npm package:** [https://www.npmjs.com/package/body-parser](https://www.npmjs.com/package/bcrypt) - For securely hashing passwords.
-* **body-parser npm package:** [https://www.npmjs.com/package/bcrypt](https://www.npmjs.com/package/bcrypt) - For securely hashing passwords.
+* **body-parser npm package:** [https://www.npmjs.com/package/bcrypt](https://www.npmjs.com/package/bcrypt) - For parsing Node.js bodies.
 * **dotenv npm package:** [https://www.npmjs.com/package/dotenv](https://www.npmjs.com/package/dotenv) - For managing environment variables.
+* **nodemon:** [https://www.npmjs.com/package/nodemon](https://www.npmjs.com/package/nodemon) - For developing Node.js based applications
 * **Axios npm package:** [https://www.npmjs.com/package/axios](https://www.npmjs.com/package/axios) - While primarily used in the frontend, understanding HTTP requests and responses is crucial for backend development.
+
+I would like to thank the creators and maintainers of these technologies and their documentation, which were invaluable in building this application.
 
 I would also like to acknowledge the knowledge and guidance my instructors Tishana Trainor, Bryan Santos, and Constance Nwaigwe shared and gave.
 
