@@ -20,8 +20,17 @@ app.use(cors()); // Enable CORS for all routes
 
 // Connect to MongoDB using Mongoose
 mongoose.connect(process.env.ATLAS_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('Could not connect to MongoDB', err));
+  .then(() => console.log('Connected to MongoDB using Mongoose'))
+  .catch(err => console.error('Could not connect to MongoDB using Mongoose', err));
+
+// --- Request Logger ---
+// Log details of each incoming request.
+const requestLogger = (req, res, next) => {
+    console.log(`${new Date().toISOString()} - Received ${req.method} request at ${req.originalUrl}`);
+    next(); // Pass control to the next middleware/route handler
+};
+
+app.use(requestLogger);// Apply request logger middleware to all incoming requests
 
 // API Routes - Mount the route handlers
 app.use('/api/characters', characterRoutes);
