@@ -46,13 +46,15 @@ export const createCharacter = async (req, res) => {
 // _Update a character
 export const updateCharacter = async (req, res) => {
   try {
-    const updatedCharacter = await Character.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const { name, role, family } = req.body;
+    console.log('Attempting to update character with ID:', req.params._id);
+    const updatedCharacter = await Character.findByIdAndUpdate(req.params.id, { name, role, family }, { new: true });
     if (!updatedCharacter) {
       return res.status(404).json({ message: 'Character not found' });
     }
     res.json(updatedCharacter);
   } catch (err) {
-    console.error(err);
+    console.error('Error updating character:', err);
     res.status(500).json({ message: 'Error updating character - Server Error' });
   }
 };
@@ -60,6 +62,7 @@ export const updateCharacter = async (req, res) => {
 // DELETE a character
 export const deleteCharacter = async (req, res) => {
   try {
+    console.log('Attempting to delete character with ID:', req.params.id);
     const deletedCharacter = await Character.findByIdAndDelete(req.params.id);
     if (!deletedCharacter) {
       return res.status(404).json({ message: 'Character not found' });
